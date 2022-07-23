@@ -9,6 +9,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.6
+  dio2: ^5.0.0-nullsafety
   file_selector: ^0.8.4+3
   firebase_core: ^1.19.2
   flutter:
@@ -16,9 +17,15 @@ dependencies:
   freezed_annotation: ^2.1.0
   get: 4.6.5
   get_storage: ^2.0.3
+  getwidget: ^3.0.1
   google_fonts: ^3.0.1
+  http: ^0.13.4
+  image_picker: ^0.8.5+3
+  json_annotation: ^4.6.0
   json_serializable: ^6.3.1
+  retrofit: ^3.0.1+1
   rxdart: ^0.27.5
+  syncfusion_flutter_calendar: ^20.2.39
   syncfusion_flutter_core: ^20.2.39
   syncfusion_flutter_datagrid: ^20.2.39
   uuid: ^3.0.6
@@ -29,6 +36,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^2.1.0+1
+  retrofit_generator: ^4.0.2
 
 flutter:
   uses-material-design: true

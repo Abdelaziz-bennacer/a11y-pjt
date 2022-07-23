@@ -20,10 +20,15 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
+  int get id => throw _privateConstructorUsedError;
   String get uuid => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get firstname => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get function => throw _privateConstructorUsedError;
+  bool get isAdmin => throw _privateConstructorUsedError;
+  String? get avatarURL => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +40,16 @@ mixin _$UserModel {
 abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res>;
-  $Res call({String uuid, String name, String email, String function});
+  $Res call(
+      {int id,
+      String uuid,
+      String username,
+      String name,
+      String firstname,
+      String email,
+      String function,
+      bool isAdmin,
+      String? avatarURL});
 }
 
 /// @nodoc
@@ -48,19 +62,36 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? uuid = freezed,
+    Object? username = freezed,
     Object? name = freezed,
+    Object? firstname = freezed,
     Object? email = freezed,
     Object? function = freezed,
+    Object? isAdmin = freezed,
+    Object? avatarURL = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstname: firstname == freezed
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
               as String,
       email: email == freezed
           ? _value.email
@@ -70,6 +101,14 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
           ? _value.function
           : function // ignore: cast_nullable_to_non_nullable
               as String,
+      isAdmin: isAdmin == freezed
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool,
+      avatarURL: avatarURL == freezed
+          ? _value.avatarURL
+          : avatarURL // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -80,7 +119,16 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
           _$_UserModel value, $Res Function(_$_UserModel) then) =
       __$$_UserModelCopyWithImpl<$Res>;
   @override
-  $Res call({String uuid, String name, String email, String function});
+  $Res call(
+      {int id,
+      String uuid,
+      String username,
+      String name,
+      String firstname,
+      String email,
+      String function,
+      bool isAdmin,
+      String? avatarURL});
 }
 
 /// @nodoc
@@ -95,19 +143,36 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? uuid = freezed,
+    Object? username = freezed,
     Object? name = freezed,
+    Object? firstname = freezed,
     Object? email = freezed,
     Object? function = freezed,
+    Object? isAdmin = freezed,
+    Object? avatarURL = freezed,
   }) {
     return _then(_$_UserModel(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
               as String,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstname: firstname == freezed
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
               as String,
       email: email == freezed
           ? _value.email
@@ -117,6 +182,14 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
           ? _value.function
           : function // ignore: cast_nullable_to_non_nullable
               as String,
+      isAdmin: isAdmin == freezed
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool,
+      avatarURL: avatarURL == freezed
+          ? _value.avatarURL
+          : avatarURL // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -124,27 +197,42 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserModel implements _UserModel {
-  const _$_UserModel(
-      {required this.uuid,
+  _$_UserModel(
+      {required this.id,
+      required this.uuid,
+      required this.username,
       required this.name,
+      required this.firstname,
       required this.email,
-      required this.function});
+      required this.function,
+      required this.isAdmin,
+      this.avatarURL});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
 
   @override
+  final int id;
+  @override
   final String uuid;
   @override
+  final String username;
+  @override
   final String name;
+  @override
+  final String firstname;
   @override
   final String email;
   @override
   final String function;
+  @override
+  final bool isAdmin;
+  @override
+  final String? avatarURL;
 
   @override
   String toString() {
-    return 'UserModel(uuid: $uuid, name: $name, email: $email, function: $function)';
+    return 'UserModel(id: $id, uuid: $uuid, username: $username, name: $name, firstname: $firstname, email: $email, function: $function, isAdmin: $isAdmin, avatarURL: $avatarURL)';
   }
 
   @override
@@ -152,20 +240,30 @@ class _$_UserModel implements _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserModel &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.uuid, uuid) &&
+            const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.firstname, firstname) &&
             const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.function, function));
+            const DeepCollectionEquality().equals(other.function, function) &&
+            const DeepCollectionEquality().equals(other.isAdmin, isAdmin) &&
+            const DeepCollectionEquality().equals(other.avatarURL, avatarURL));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(uuid),
+      const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(firstname),
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(function));
+      const DeepCollectionEquality().hash(function),
+      const DeepCollectionEquality().hash(isAdmin),
+      const DeepCollectionEquality().hash(avatarURL));
 
   @JsonKey(ignore: true)
   @override
@@ -181,23 +279,38 @@ class _$_UserModel implements _UserModel {
 }
 
 abstract class _UserModel implements UserModel {
-  const factory _UserModel(
-      {required final String uuid,
+  factory _UserModel(
+      {required final int id,
+      required final String uuid,
+      required final String username,
       required final String name,
+      required final String firstname,
       required final String email,
-      required final String function}) = _$_UserModel;
+      required final String function,
+      required final bool isAdmin,
+      final String? avatarURL}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
 
   @override
+  int get id;
+  @override
   String get uuid;
   @override
+  String get username;
+  @override
   String get name;
+  @override
+  String get firstname;
   @override
   String get email;
   @override
   String get function;
+  @override
+  bool get isAdmin;
+  @override
+  String? get avatarURL;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>

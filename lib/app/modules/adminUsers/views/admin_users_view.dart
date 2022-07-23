@@ -1,11 +1,10 @@
+import 'package:a11y_pjt/app/global/ui/widgets/topbar/app_nav_bar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:getwidget/components/accordion/gf_accordion.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-
-import '../../../global/themes/themes.dart';
 import '../../../global/ui/widgets/topbar/topbar_content.dart';
 import '../controllers/admin_users_controller.dart';
 
@@ -16,180 +15,102 @@ class AdminUsersView extends GetView<AdminUsersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:
-        Size(Get.size.width, Get.size.height),
-        child: const TopBarContents(),
+      appBar: AppBar(
+        title: Text('Utilisateurs', style: GoogleFonts.acme(),),
+        centerTitle: true,
       ),
-      body: Container(
-        width: double.infinity,
-        //padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-        decoration: BoxDecoration(
-            color: Colors.grey.shade100,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              width: 3,
-              color: const Color(0xff082D6D),
-              style: BorderStyle.solid,
-            )
-          //color: const Color(0xff517fd2),
-        ),
-        child: Center(
-          child: GetBuilder<AdminUsersController>(builder: (logic) {
-            return Padding(
-              padding: const EdgeInsets.all(10),
-              child: SfTheme(
-                data: SfThemeData(
-                  dataGridThemeData: SfDataGridThemeData(
-                    headerColor: const Color(0xff082D6D),
-                  )
-                ),
-                child: SfDataGrid(
-                    columns: [
-                      GridColumn(
-                          columnName: 'id',
-                          label: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'ID',
-                                style: Themes.headerAdminListTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                          ),
-                      ),
-                      GridColumn(
-                          columnName: 'name',
-                          label: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'Name',
-                                style: Themes.headerAdminListTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                          ),
-                      ),
-                      GridColumn(
-                          columnName: 'designation',
-                          label: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'Designation',
-                                style: Themes.headerAdminListTextStyle,
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                          ),
-                      ),
-                      GridColumn(
-                          columnName: 'salary',
-                          label: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'Salary',
-                                style: Themes.headerAdminListTextStyle,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                          ),
-                      ),
-                      ////////////****************////////////////:
-                      GridColumn(
-                        columnName: 'id2',
-                        label: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'ID2',
-                            style: Themes.headerAdminListTextStyle,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ),
-                      GridColumn(
-                        columnName: 'name2',
-                        label: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Name2',
-                            style: Themes.headerAdminListTextStyle,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ),
-                      GridColumn(
-                        columnName: 'designation2',
-                        label: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Designation2',
-                            style: Themes.headerAdminListTextStyle,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ),
-                      GridColumn(
-                        columnName: 'salary2',
-                        label: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Salary2',
-                            style: Themes.headerAdminListTextStyle,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ),
-                      /////////////////***************//////////////
-                    ],
-                    source: controller.employeeDataSource,
-                    selectionMode: SelectionMode.multiple,
-                    allowSorting: true,
-                    defaultColumnWidth: Get.width * 0.2,
-                    columnWidthMode: ColumnWidthMode.fitByColumnName,
-                   /* allowColumnsResizing: true,
-                    onColumnResizeStart: (ColumnResizeStartDetails details) {
-                      // disable resizing for the `salary` column.
-                      if (details.column.columnName == 'salary') {
-                        return false;
-                      }
-                      return true;
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.all(20),
+                child: ElevatedButton(
+                    onPressed: () {
+                      controller.addNewUser();
                     },
-                    columnWidthMode: ColumnWidthMode.fitByCellValue,
-                    onColumnResizeUpdate: (ColumnResizeUpdateDetails details) {
-                      controller.columnWidths[details.column.columnName] =
-                          details.width;
-
-                      return true;
-                    },*/
-                  ),
+                    child: Text('Ajouter un utilisateur'),
+                ),
               ),
+            ],
+          ),
+          Container(
+            width: double.infinity,
+            //padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                border: Border.all(
+                  width: 3,
+                  color: const Color(0xff082D6D),
+                  style: BorderStyle.solid,
+                )
+              //color: const Color(0xff517fd2),
+            ),
+            child: Center(
+              child: GetBuilder<AdminUsersController>(builder: (logic) {
+                return Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: SfTheme(
+                    data: SfThemeData(
+                      dataGridThemeData: SfDataGridThemeData(
+                        headerColor: const Color(0xff082D6D),
+                      )
+                    ),
+                    child: SfDataGrid(
+                        columns: [
+                          controller.columnTableWidget('id', 'ID'),
+                          controller.columnTableWidget('name', 'NAME'),
+                          controller.columnTableWidget('firstname', 'Prénom'),
+                          controller.columnTableWidget('email', 'Email'),
+                          controller.columnTableWidget('function', 'Fonction'),
+                          controller.columnTableWidget('isAdmin', 'Admin'),
+                          controller.columnTableWidget('goToProfileBTN', 'Profil'),
+                          controller.columnTableWidget('delete', 'Supprimer'),
+                        ],
+                        source: controller.employeeDataSource,
+                        //selectionMode: SelectionMode.multiple,
+                        allowSorting: true,
+                        //defaultColumnWidth: Get.width * 0.12,
+                        columnWidthMode: ColumnWidthMode.fill,
+                       /* allowColumnsResizing: true,
+                        onColumnResizeStart: (ColumnResizeStartDetails details) {
+                          // disable resizing for the `salary` column.
+                          if (details.column.columnName == 'salary') {
+                            return false;
+                          }
+                          return true;
+                        },
+                        columnWidthMode: ColumnWidthMode.fitByCellValue,
+                        onColumnResizeUpdate: (ColumnResizeUpdateDetails details) {
+                          controller.columnWidths[details.column.columnName] =
+                              details.width;
 
-            );
-          }),
-        ),
+                          return true;
+                        },*/
+                      ),
+                  ),
+
+                );
+              }),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
 class Employee {
-  final int id;
-  final String name;
-  final String designation;
-  final int salary;
+  final int? id;
+  final String? name;
+  final String? firstname;
+  final String? email;
+  final String? function;
+  bool? isAdmin;
 
-  final int id2;
-  final String name2;
-  final String designation2;
-  final int salary2;
-
-  //Employee(this.id, this.name, this.designation, this.salary);
-  Employee(this.id, this.name, this.designation, this.salary, this.id2, this.name2, this.designation2, this.salary2);
+  Employee(this.id, this.name, this.firstname, this.email, this.function, this.isAdmin,);
 }
 
 class EmployeeDataSource extends DataGridSource {
@@ -200,14 +121,12 @@ class EmployeeDataSource extends DataGridSource {
           DataGridCell<int>(columnName: 'id', value: dataGridRow.id),
           DataGridCell<String>(columnName: 'name', value: dataGridRow.name),
           DataGridCell<String>(
-              columnName: 'designation', value: dataGridRow.designation),
-          DataGridCell<int>(columnName: 'salary', value: dataGridRow.salary),
-          ///////////////***************/////////////
-          DataGridCell<int>(columnName: 'id2', value: dataGridRow.id),
-          DataGridCell<String>(columnName: 'name2', value: dataGridRow.name),
-          DataGridCell<String>(
-              columnName: 'designation2', value: dataGridRow.designation),
-          DataGridCell<int>(columnName: 'salary2', value: dataGridRow.salary),
+              columnName: 'firstname', value: dataGridRow.firstname),
+          DataGridCell<String>(columnName: 'function', value: dataGridRow.function),
+          DataGridCell<String>(columnName: 'email', value: dataGridRow.email),
+          DataGridCell<bool>(columnName: 'isAdmin', value: dataGridRow.isAdmin),
+          const DataGridCell<Widget>(columnName: 'goToProfileBTN', value: null),
+          const DataGridCell<Widget>(columnName: 'delete', value: null),
         ]))
         .toList();
   }
@@ -230,16 +149,60 @@ class EmployeeDataSource extends DataGridSource {
     return DataGridRowAdapter(
       color: getBackgroundColor(),
       cells: row.getCells().map<Widget>((dataGridCell) {
+        Widget rowAdapter(String title, dynamic isAdminValue) {
+          switch(title) {
+            case 'goToProfileBTN':
+              return LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        //primary: Get.width > 900 ? Colors.red : Colors.transparent,
+                        textStyle: TextStyle(color: Colors.white)
+                      ),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                  content: SizedBox(
+                                      height: 100,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                              'Employee ID: ${row.getCells()[0].value.toString()}'),
+                                          Text(
+                                              'Employee Name: ${row.getCells()[1].value.toString()}'),
+                                          Text(
+                                              'Employee Designation: ${row.getCells()[2].value.toString()}'),
+                                        ],
+                                      ))));
+                        },
+                        child: Get.width > 1000 ? const Text('Details', overflow: TextOverflow.ellipsis,): Icon(Icons.remove_red_eye),
+                    );
+                  });
+            case 'isAdmin':
+              return isAdminValue == true ? Icon(Icons.check) : Icon(Icons.cancel_presentation);
+            case 'delete':
+              return LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    return ElevatedButton(
+                        onPressed: () {},
+                        child: Get.width > 1000 ? Text('Supprimer') : Icon(Icons.delete),
+                    );
+                  },
+              );
+            default:
+              return Text(dataGridCell.value.toString(), overflow: TextOverflow.ellipsis,);
+          }
+        }
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          alignment: Alignment.centerLeft,
-          /*alignment: (dataGridCell.columnName == 'id' ||
-              dataGridCell.columnName == 'salary' || dataGridCell.columnName == 'id2' ||
-              dataGridCell.columnName == 'salary2')
-              ? Alignment.centerRight
-              : Alignment.centerLeft,*/
-          child: Text(
-            dataGridCell.value.toString(), overflow: TextOverflow.ellipsis,),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          //alignment: Alignment.center,
+          alignment: (dataGridCell.columnName == 'id')
+              ? Alignment.centerLeft
+              : Alignment.center,
+          child: rowAdapter(dataGridCell.columnName, dataGridCell.value)
         );
       }).toList(),
     );

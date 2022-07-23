@@ -51,15 +51,17 @@ class TopBarContents extends GetView<NavigationController> {
             Obx(() => getTopBarMenuItem(4, 'Liste')),
             ],
             ),
-            
-            InkWell(
-              onTap: () {},
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(Icons.logout_sharp),
-                  Text('Logout')
-                ],
+            Container(
+              margin: EdgeInsets.only(right: 10),
+              child: InkWell(
+                onTap: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.logout_sharp),
+                    Text('Logout')
+                  ],
+                ),
               ),
             ),
           ],

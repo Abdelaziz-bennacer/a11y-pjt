@@ -22,7 +22,7 @@ class LoginProvider extends GetxService with ErrorHandler {
       DialogUtil.showErrorDialog('Data null');
       return;
     } else {
-      print(response);
+      //print(response);
       return response;
     }
   }
@@ -37,7 +37,7 @@ class LoginProvider extends GetxService with ErrorHandler {
       response.printError();
       return;
     } else {
-      print(response);
+      //print(response);
       return response;
     }
    }

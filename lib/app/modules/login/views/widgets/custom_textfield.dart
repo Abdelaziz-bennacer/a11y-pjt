@@ -5,6 +5,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final IconData? data;
   final String? hintText;
+  //final String? label;
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
   bool? isObscure = true;
@@ -15,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.data,
     this.hintText,
+    //this.label,
     this.inputFormatters,
     this.validator,
     this.isObscure,
@@ -47,6 +49,7 @@ class CustomTextField extends StatelessWidget {
           ),
           focusColor: Theme.of(context).primaryColor,
           hintText: hintText,
+          //label: Text(label!),
         ),
         inputFormatters: inputFormatters,
         validator: validator,

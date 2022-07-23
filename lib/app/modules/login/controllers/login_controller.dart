@@ -1,11 +1,14 @@
-import 'package:a11y_pjt/app/data/models/user_model.dart';
+
+import 'package:a11y_pjt/app/config/app_information.dart';
+import 'package:a11y_pjt/app/data/models/user_model/user_model.dart';
 import 'package:a11y_pjt/app/data/providers/login_provider.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:a11y_pjt/app/data/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../data/models/login_model/login_model.dart';
+import '../../../data/providers/upload_avatar_provider.dart';
 import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
@@ -14,10 +17,14 @@ class LoginController extends GetxController {
   TextEditingController passwordController = TextEditingController();
 
   final loginProvider = Get.put(LoginProvider());
+  final userProvider = Get.put(UserProvider());
+  final uploadAvatarProvider = Get.put(UploadAvatarProvider());
 
-  int? userId = 0;
+  int? userId;
+  String? userUUID;
   String? userEmail;
-  UserModel? currentUser;
+  String? username;
+  late UserModel currentUser;
 
   final formKey = GlobalKey<FormState>().obs;
 
@@ -45,29 +52,46 @@ class LoginController extends GetxController {
         password: passwordController.text.trim(),
       );
       var response = await loginProvider.login(loginModel.toJson());
-      var res = response['user']['email'];
-
-      print('ctr resp: $res');
+      userId = response['user']['id'];
+      username = response['user']['username'];
+      userEmail = response['user']['email'];
+      userUUID = response['user']['uuid'];
 
       if (response != null) {
+        var resp = await userProvider.getCurrentUser(userId!);
+        /* print('USER RESPONSE: ${resp['uuid']}');
+        print('USER RESPONSE: ${resp['username']}');
+        print('USER RESPONSE: ${resp['name']}');
+        print('USER RESPONSE: ${resp['firstname']}');
+        print('USER RESPONSE: ${resp['email']}');
+        print('USER RESPONSE: ${resp['function']}');
+        print('USER RESPONSE: ${resp['isAdmin']}');
+        print('USER RESPONSE: ${resp['avatar']['formats']['small']['url']}'); */
         isLoading = false;
         currentUser = UserModel(
-          uuid: response['user']['uuid'] == null ? uuid.v4() : response['user']['uuid'],
-          name: response['user']['username'], 
-          email: response['user']['email'], 
-          function: 'auditeur',
+          id: resp['id'],
+          uuid: resp['uuid'],
+          username: resp['username'],
+          name: resp['name'], 
+          firstname: resp['firstname'],
+          email: resp['email'], 
+          function: resp['function'],
+          isAdmin: resp['isAdmin'],
+          avatarURL: resp['avatar'] != null 
+            ? '${AppConstants.dbBaseUrl}${resp['avatar']['formats']['small']['url']}' 
+            : null,
         );
-        //print(response['user']['id']);
+        print('CURRENT USER: $currentUser');
         if (response['user']['uuid'] == null) {
-          var resp = await loginProvider.updateUser(
-            {"uuid": currentUser!.uuid},
+          var resp2 = await loginProvider.updateUser(
+            {"uuid": userUUID},
             //currentUser!.toJson(),
               response['user']['id'],
           );
-          print('User to update: $resp');
-          print('User uuid updated');
+          //print('$resp2');
+          //print('User uuid updated');
         }
-        print('USER: $currentUser');
+        //print('USER: $currentUser');
         Get.toNamed(AppPages.BASE);
         //Get.back();
       }
@@ -126,5 +150,6 @@ class LoginController extends GetxController {
     }
     Get.back();
   } */
+
 
 }

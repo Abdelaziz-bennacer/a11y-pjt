@@ -66,7 +66,7 @@ abstract class NetworkHandler {
         },
       ).timeout(Duration(seconds: timeOutDuration));
       print('Response: $response');
-      print('RESPONSE-JWT: ${response}');
+    
       //storeToken(response.data["jwt"]);
       //return response.data;
       return processResponse(response);
@@ -93,7 +93,7 @@ abstract class NetworkHandler {
         },
       ).timeout(Duration(seconds: timeOutDuration));
       print('Response: $response');
-      print('RESPONSE-JWT: ${response}');
+      
       //storeToken(response.data["jwt"]);
       //return response.data;
       return processResponse(response);

@@ -1,4 +1,4 @@
-import 'dart:html';
+/* import 'dart:html';
 
 import 'package:file_selector/file_selector.dart';
 import 'package:get/get.dart';
@@ -6,21 +6,21 @@ import 'package:uuid/uuid.dart';
 
 
 class HomeController extends GetxController {
-  //var uuid = const Uuid();
-  //User? user = FirebaseAuth.instance.currentUser!;
+  var uuid = const Uuid();
+  User? user = FirebaseAuth.instance.currentUser!;
   var user;
 
   var screenSize = Get.size;
   File? file;
 
-  //String? imageAvatarPath;
+  String? imageAvatarPath;
   String? userAvatarURL;
 
-  //XFile? file;
-  //File? file2;
+  XFile? file;
+  File? file2;
 
-  /* final XTypeGroup typeGroup =
-      XTypeGroup(label: 'images', extensions: ['jpg', 'png']); */
+  final XTypeGroup typeGroup =
+      XTypeGroup(label: 'images', extensions: ['jpg', 'png']);
 
   void uploaodImageWeb({required Function(File file) onSelected}) {
     InputElement uploadInput = FileUploadInputElement() as InputElement..accept = 'image/*';
@@ -41,7 +41,7 @@ class HomeController extends GetxController {
     
   }
 
-  /* Future<void> getImage() async {
+  Future<void> getImage() async {
     file = (await openFile(acceptedTypeGroups: [typeGroup]));
     update();
     file2 = File(file!.path);
@@ -51,7 +51,8 @@ class HomeController extends GetxController {
     fstorage.UploadTask uploadTask = reference.putFile(File(file!.path));
     fstorage.TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
     await taskSnapshot.ref.getDownloadURL().then((url) {userAvatarURL = url;});    
-  } */
+  }
 
   void deleteImage() {}
 }
+ */*/
