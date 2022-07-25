@@ -1,4 +1,4 @@
-import 'dart:html';
+//import 'dart:html';
 import 'dart:typed_data';
 import 'package:a11y_pjt/app/data/providers/login_provider.dart';
 import 'package:a11y_pjt/app/data/providers/upload_avatar_provider.dart';
@@ -21,10 +21,10 @@ class BaseController extends GetxController {
 
   //int? imageAvatarId;
   //String? imageAvatarLocalPath;
-  //String? displayAvatarWithURL;
+  String? displayAvatarWithURL;
 
   XFile? file;
-  File? file2;
+  //File? file2;
 
   final XTypeGroup typeGroup =
   XTypeGroup(label: 'images', extensions: ['jpg', 'png']);
@@ -40,17 +40,18 @@ void uploadPicture() async{
 
   Uint8List data = await file!.readAsBytes();
   List<int> list = data.cast();
-  await uploadAvatarProvider.sendPic(list, '${loginController.username}_myfile', 2);
+  await uploadAvatarProvider.sendPic(list, '${loginController.username}_avatar', 2);
   
   var resp = await userProvider.getCurrentUser(loginController.currentUser.id);
   //print(resp['avatar']['formats']['small']['url']);
-  String newUrl = '${AppConstants.dbBaseUrl}${resp['avatar']['formats']['small']['url']}';
-  box.write('avatarServerURL', newUrl);
+  displayAvatarWithURL = '${AppConstants.dbBaseUrl}${resp['avatar']['formats']['small']['url']}';
+  box.write('avatarServerURL', displayAvatarWithURL);
+  print('BOX URL: ${box.read('avatarServerURL')}');
   update();
   //print (newUrl);
   
   loginController.currentUser = loginController.currentUser.copyWith(
-      avatarURL: newUrl,
+      avatarURL: displayAvatarWithURL,
   );
     
   print(loginController.currentUser);

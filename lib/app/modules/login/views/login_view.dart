@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 import 'widgets/custom_textfield.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
-
+class LoginView extends StatelessWidget {
+  LoginView({Key? key}) : super(key: key);
+  final loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class LoginView extends GetView<LoginController> {
                       children: [
                         Image.asset(
                             'assets/logo.png',
-                            height: MediaQuery.of(context).size.width / 8,
+                            height: Get.width / 8,
                             filterQuality: FilterQuality.high,
                           ),
                         const SizedBox(height: 30),
@@ -30,15 +30,15 @@ class LoginView extends GetView<LoginController> {
                           color: Colors.transparent,
                           child: Container(
                             //height: MediaQuery.of(context).size.height / 2.5,
-                            width: MediaQuery.of(context).size.width / 3.5,
+                            width: Get.width / 3.5,
                             child: Form(
-                              key: controller.formKey.value,
+                              key: loginController.formKey.value,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   CustomTextField(
                                     data: Icons.email,
-                                    controller: controller.emailController,
+                                    controller: loginController.emailController,
                                     hintText: "Email",
                                     isObscure: false,
                                     /*validator: (val) {
@@ -50,7 +50,7 @@ class LoginView extends GetView<LoginController> {
                                   const SizedBox(height: 20),
                                   CustomTextField(
                                     data: Icons.lock,
-                                    controller: controller.passwordController,
+                                    controller: loginController.passwordController,
                                     hintText: "Mot de passe",
                                     isObscure: true,
                                     /*validator: (val) {
@@ -62,7 +62,7 @@ class LoginView extends GetView<LoginController> {
                                   const SizedBox(height: 20),
                                   ElevatedButton(
                                     onPressed: () {
-                                      controller.submit();
+                                      loginController.submit();
                                     },
                                     child: const Text(
                                       'CONNEXION',

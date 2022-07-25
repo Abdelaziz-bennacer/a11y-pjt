@@ -30,6 +30,13 @@ class LoginController extends GetxController {
 
   var isLoading = false;
 
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
+  }
+
   void displayIndicatorOrNot(bool isLoading) {
     if(isLoading) {
       Get.dialog(
@@ -78,7 +85,7 @@ class LoginController extends GetxController {
           function: resp['function'],
           isAdmin: resp['isAdmin'],
           avatarURL: resp['avatar'] != null 
-            ? '${AppConstants.dbBaseUrl}${resp['avatar']['formats']['small']['url']}' 
+            ? '${AppConstants.dbBaseUrl}${resp['avatar']['formats']['medium']['url']}'
             : null,
         );
         print('CURRENT USER: $currentUser');

@@ -11,7 +11,7 @@ class AppNavBar extends GetView<NavigationController> {
     return PreferredSize(
     preferredSize:
     Size(Get.width, Get.height),
-    child: const TopBarContents(),
+    child: TopBarContents(),
     );
   }
 }
@@ -20,6 +20,6 @@ PreferredSizeWidget appNavBar() {
   return PreferredSize(
     preferredSize:
     Size(Get.width, Get.height),
-    child: const TopBarContents(),
+    child: TopBarContents(),
   );
 }

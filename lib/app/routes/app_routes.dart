@@ -9,6 +9,8 @@ abstract class Routes {
   static const BASE = _Paths.BASE;
   static const ADMIN_USERS = _Paths.ADMIN_USERS;
   //static const AUTHENTICATION = _Paths.AUTHENTICATION;
+  static const ADMIN_CALENDAR = _Paths.ADMIN_CALENDAR;
+  static const MANAGER_CALENDAR = _Paths.MANAGER_CALENDAR;
 }
 
 abstract class _Paths {
@@ -20,4 +22,6 @@ abstract class _Paths {
   static const BASE = '/base';
   static const ADMIN_USERS = '/admin-users';
   //static const AUTHENTICATION = '/authentication';
+  static const ADMIN_CALENDAR = '/admin-calendar';
+  static const MANAGER_CALENDAR = '/manager-calendar';
 }

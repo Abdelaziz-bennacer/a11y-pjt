@@ -38,6 +38,7 @@ class AdminUsersController extends GetxController {
 
   @override
   void onClose() {
+    nameController.dispose();
     super.onClose();
   }
 
