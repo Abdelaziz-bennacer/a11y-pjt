@@ -1,4 +1,21 @@
+import 'package:a11y_pjt/app/modules/base/controllers/dashboard_calendar_component_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+
+/*class SubjectPicker extends GetxService {
+  final controller = Get.put(DashBoardCalendarController());
+  Color getTaskCardColor(String subject) {
+    if(subject == controller.projectsServicesNames[0]){return const Color(kGreen);}
+    else if(subject == controller.projectsServicesNames[1]) {return const Color(kGreen);}
+    else if(subject == controller.projectsServicesNames[2]) {return const Color(kPurple);}
+    else if(subject == controller.projectsServicesNames[3]) {return const Color(kRed);}
+    else if(subject == controller.projectsServicesNames[4]) {return const Color(kBlue);}
+    else if(subject == controller.projectsServicesNames[5]) {return const Color(kPink);}
+    else if(subject == controller.projectsServicesNames[6]) {return const Color(kOrange);}
+    else {return const Color(kOrange);}
+  }
+}*/
 
 enum UserTaskSubject {
   AuditRGAA,
@@ -35,24 +52,35 @@ Color getUserTaskPickerLensColor(UserTaskSubject subject) {
   }
 }
 
-Color getTaskCardColor(String subject) {
+/*Color getTaskCardColor2(String subject, List<String> subjects) {
+  if(subject == subjects[0]){return const Color(kGreen);}
+  else if(subject == subjects[1]) {return const Color(kGreen);}
+  else if(subject == subjects[2]) {return const Color(kPurple);}
+  else if(subject == subjects[3]) {return const Color(kRed);}
+  else if(subject == subjects[4]) {return const Color(kBlue);}
+  else if(subject == subjects[5]) {return const Color(kPink);}
+  else if(subject == subjects[6]) {return const Color(kOrange);}
+  else {return const Color(kOrange);}
+}*/
+
+/*Color getTaskCardColor(String subject) {
   switch (subject) {
-    case "AuditRGAA":
+    case "Audit RGAA":
       return const Color(kGreen);
-    case "AuditRAAM":
+    case "Audit RAAM":
       return const Color(kPurple);
-    case "Reunion":
+    case "Réunion":
       return const Color(kRed);
-    case "DeplacementClient":
+    case "Déplacement Client":
       return const Color(kBlue);
-    case "AdminGDP":
+    case "Admin/GDP":
       return const Color(kPink);
-    case "PrepaProjet":
+    case 'Préparation Projet':
       return const Color(kOrange);
     default:
-      return const Color(kBlue);
+      return Colors.amberAccent;
   }
-}
+}*/
 
 String getSubjectTaskToString(UserTaskSubject subject) {
   switch (subject) {
@@ -67,6 +95,25 @@ String getSubjectTaskToString(UserTaskSubject subject) {
     case UserTaskSubject.AdminGDP:
       return 'Admin/GDP';
     case UserTaskSubject.PrepaProjet:
+      return 'Préparation Projet';
+    default:
+      return 'Tâche';
+  }
+}
+
+String getSubjectTaskToString2(String subject) {
+  switch (subject) {
+    case "Audit RGAA":
+      return 'Audit RGAA';
+    case 'Audit RAAM':
+      return 'Audit RAAM';
+    case 'Réunion':
+      return 'Réunion';
+    case 'Déplacement Client':
+      return 'Déplacement Client';
+    case 'Admin/GDP':
+      return 'Admin/GDP';
+    case 'Préparation Projet':
       return 'Préparation Projet';
     default:
       return 'Tâche';

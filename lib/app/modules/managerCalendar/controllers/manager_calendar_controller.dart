@@ -1,4 +1,4 @@
-import 'dart:ui';
+/*import 'dart:ui';
 
 import 'package:a11y_pjt/app/modules/managerCalendar/views/manager_calendar_view.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import '../../../data/models/user_resources/user_resources.dart';
 import '../../../data/providers/user_provider.dart';
 import '../../adminCalendar/controllers/admin_calendar_controller.dart';
 
-class ManagerCalendarController extends GetxController {
+class ManageCalendarController extends GetxController {
 
   //List<Color>? colorCollection;
   //List<String>? colorNames;
@@ -31,7 +31,7 @@ class ManagerCalendarController extends GetxController {
   //List<String>? nameCollection;
 
   final userProvider = Get.put(UserProvider());
-  final adminCalendarController = Get.put(AdminCalendarController());
+  //final adminCalendarController = Get.put(AdminCalendarController());
 
   List<Color> colorCollection = <Color>[
   const Color(0xFF0F8644),
@@ -78,7 +78,7 @@ class ManagerCalendarController extends GetxController {
     return toString;
   }
 
-  /*Future<List<Meeting>> fetchManagerTasks() async {
+  *//*Future<List<Meeting>> fetchManagerTasks() async {
     var response = await userProvider.getAllTasks();
     List<Meeting> list = [];
     for (var task in response) {
@@ -95,8 +95,8 @@ class ManagerCalendarController extends GetxController {
     }
     //print('LIST : $list');
     return list;
-  }*/
-  /*Future<List<Meeting>> fetchManagerTasks2() async {
+  }*//*
+  *//*Future<List<Meeting>> fetchManagerTasks2() async {
     var response = await userProvider.getAllTasks();
     List<Meeting> list = [];
     for (var task in response) {
@@ -113,7 +113,7 @@ class ManagerCalendarController extends GetxController {
     }
     print('LIST : $list');
     return list;
-  }*/
+  }*//*
 
   void _addResourceDetails() async {
     List<UserResources> response = await userProvider.getUsers();
@@ -123,14 +123,14 @@ class ManagerCalendarController extends GetxController {
         CalendarResource(
           id: user.id!,
           displayName: user.name!,
-          /*image: NetworkImage(
+          *//*image: NetworkImage(
               user.imageAvatar != null
                   ? user.imageAvatar!
                   : 'https://cdn.pixabay.com/photo/2022/06/18/16/55/cute-7270285_960_720.png',
-          )*/
-          /*image: ExactAssetImage(
+          )*//*
+          *//*image: ExactAssetImage(
               userImages[Random().nextInt(5)],
-          ), */
+          ), *//*
           image: NetworkImage(
             user.imageAvatar != null
                 ? '${AppConstants.dbBaseUrl}${user.imageAvatar!}'
@@ -143,4 +143,4 @@ class ManagerCalendarController extends GetxController {
     //return _employeeCollection!;
   }
 
-}
+}*/

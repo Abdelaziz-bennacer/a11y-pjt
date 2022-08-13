@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:a11y_pjt/app/global/ui/utils/dialog_util.dart';
 import 'package:get/get.dart';
 import '../../config/app_information.dart';
 import '../errors/error_handler.dart';
+import 'network_handler.dart';
 
 class UploadAvatarProvider extends GetConnect with ErrorHandler{
 
@@ -27,5 +30,15 @@ class UploadAvatarProvider extends GetConnect with ErrorHandler{
        catch (e) {
         DialogUtil.showErrorDialog(e.toString());
        }
+  }
+
+  Future deletePicture(int id) async {
+    final response = await NetworkHandler.put(
+      {
+          "avatar": null,
+      },
+      '/api/users/$id',
+    );
+    print('DELETE PIC1: $response');
   }
 }

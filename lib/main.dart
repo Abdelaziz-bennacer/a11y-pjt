@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'app/global/themes/theme_service.dart';
 import 'app/global/themes/themes.dart';
 import 'app/global/translation/translations_service.dart';
+import 'app/global/utils/custom_scroll_behavior.dart';
 import 'app/routes/app_pages.dart';
 import 'firebase_options.dart';
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      scrollBehavior: CustomScrollBehavior(),
       title: "Application",
       debugShowCheckedModeBanner: false,
       theme: Themes.light,

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../../modules/base/views/components/dash_board_calendar/dashboard_calendar_component_controller.dart';
+import '../../../../modules/base/controllers/dashboard_calendar_component_controller.dart';
 import '../../../../routes/app_pages.dart';
 class NavigationController extends GetxController {
   final userCalendar = Get.find<DashBoardCalendarController>();
@@ -28,7 +28,13 @@ class NavigationController extends GetxController {
           userCalendar.update();
         break;
       case 'Messages':
-          Get.toNamed(AppPages.MANAGER_CALENDAR);
+          Get.toNamed(AppPages.TEST);
+          break;
+      case 'DashBoard':
+        Get.toNamed(AppPages.TEAM_BOARD);
+        break;
+      case 'Utile':
+        Get.toNamed(AppPages.UTILE);
         break;
       default:
         () {};

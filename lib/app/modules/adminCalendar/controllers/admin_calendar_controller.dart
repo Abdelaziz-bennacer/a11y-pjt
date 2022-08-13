@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:a11y_pjt/app/config/app_information.dart';
+import 'package:a11y_pjt/app/modules/base/controllers/dashboard_calendar_component_controller.dart';
 import 'package:a11y_pjt/app/modules/managerCalendar/views/manager_calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import '../../../data/models/user_resources/user_resources.dart';
 import '../../../data/models/usertask_model/usertask_model.dart';
 import '../../../data/providers/user_provider.dart';
+import '../../base/views/components/dash_board_calendar/usertask_subject_picker.dart';
 import '../../login/controllers/login_controller.dart';
 
 class TasksForManagerCalendar {
@@ -100,6 +102,7 @@ class ManagerCalendarDataSource extends CalendarDataSource {
 class AdminCalendarController extends GetxController {
   final userProvider = Get.put(UserProvider());
   final loginController = Get.find<LoginController>();
+  final dashboardCalendarController = Get.find<DashBoardCalendarController>();
   //CalendarController managerCalendarController = CalendarController();
 
   //late ManagerCalendarDataSource events;
@@ -153,41 +156,17 @@ class AdminCalendarController extends GetxController {
     var response = await userProvider.getAllTasks();
     //print('ALL TASKS RESPONSE: $response');
     List<TasksForManagerCalendar> list = [];
-    response.forEach((element) {list.add(element);});
-    /*response.map((task) {
-      TasksForManagerCalendar newTask = TasksForManagerCalendar(
-        id: task.id,
-        subject: task.subject,
-        startTime: task.startTime,
-        endTime: task.endTime,
-        isAllDay: task.isAllDay,
-        notes: task.notes,
-        resourceIds: stringToListString(task.resourceIds!),
-        color: task.color,
-      );
-      list.add(newTask);
-    });*/
-
-    /*for (var task in response) {
-      list.add(TasksForManagerCalendar(
-        id: task.id,
-        subject: task.subject,
-        startTime: task.startTime,
-        endTime: task.endTime,
-        isAllDay: task.isAllDay,
-        notes: task.notes,
-        resourceIds: stringToListString(task.resourceIds!),
-        color: task.color,
-      ));
-    }*/
-    print('LIST : $list');
+    for (var element in response) {
+      element.color = dashboardCalendarController.getTaskCardColor(element.subject!);
+      list.add(element);
+    }
     return list;
   }
 
 
 
   Future<List<CalendarResource>> addResourceDetails() async {
-    var userImages = [
+    /*var userImages = [
       'assets/images/People_Circle5.png',
       'assets/images/People_Circle8.png',
       'assets/images/People_Circle18.png',
@@ -200,7 +179,7 @@ class AdminCalendarController extends GetxController {
       'assets/images/People_Circle26.png',
       'assets/images/People_Circle24.png',
       'assets/images/People_Circle15.png',
-    ];
+    ];*/
 
     List<UserResources> response = await userProvider.getUsers();
     //users = response.cast<UserResources>();
@@ -209,14 +188,7 @@ class AdminCalendarController extends GetxController {
         CalendarResource(
           id: user.id!,
           displayName: user.name!,
-          /*image: NetworkImage(
-              user.imageAvatar != null
-                  ? user.imageAvatar!
-                  : 'https://cdn.pixabay.com/photo/2022/06/18/16/55/cute-7270285_960_720.png',
-          )*/
-          /*image: ExactAssetImage(
-              userImages[Random().nextInt(5)],
-          ), */
+
           image: NetworkImage(
             user.imageAvatar != null
               ? '${AppConstants.dbBaseUrl}${user.imageAvatar!}'
@@ -229,18 +201,28 @@ class AdminCalendarController extends GetxController {
     return employeesResourceList;
   }
 
-/*void addSpecialRegions() {
-    final DateTime date = DateTime.now();
-    specialTimeRegion = [
-      TimeRegion(
-        startTime: DateTime(date.year, date.month, date.day, 12, 0, 0),
-        endTime: DateTime(date.year, date.month, date.day, 13, 0, 0),
-        text: 'REPAS',
-        //resourceIds: controllerEmployeeCalendarResource.map((e) => e.id).toList(),
-        recurrenceRule: 'FREQ=DAILY;INTERVAL=1',
-        enablePointerInteraction: false,
-      ),
-    ];
+  /*List<String> projectsServicesNames = [];
+  List<Color> projectsServicesColors = [
+    const Color(kGreen),
+    const Color(kPurple),
+    const Color(kRed),
+    const Color(kBlue),
+    const Color(kPink),
+    const Color(kOrange),
+  ];
+  getProjectsServicesNames() async{
+    List<String> services = await userProvider.getServices();
+    print('SERVICES: $services');
+    projectsServicesNames = services;
+    return services;
+  }
+
+  Color getTaskCardColor(String subject) {
+    print('LENGTH: ${projectsServicesNames.length}');
+    print('SUBJECT: $subject');
+    var currentServiceName = projectsServicesNames.firstWhere((element) => element == subject);
+    var currentIndexService = projectsServicesNames.indexOf(currentServiceName);
+    return projectsServicesColors[currentIndexService];
   }*/
 }
 

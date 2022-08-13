@@ -1,3 +1,4 @@
+/*
 part of event_calendar;
 
 class _ColorPicker extends StatefulWidget {
@@ -45,4 +46,4 @@ class _ColorPickerState extends State<_ColorPicker> {
           )),
     );
   }
-}
+}*/

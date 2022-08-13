@@ -1,3 +1,4 @@
+/*
 part of event_calendar;
 
 class AppointmentEditor extends StatefulWidget {
@@ -217,7 +218,8 @@ class AppointmentEditorState extends State<AppointmentEditor> {
                                 }
                               })),
                     ])),
-           /* ListTile(
+           */
+/* ListTile(
               contentPadding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
               leading: Icon(
                 Icons.public,
@@ -233,7 +235,8 @@ class AppointmentEditorState extends State<AppointmentEditor> {
                   },
                 ).then((dynamic value) => setState(() {}));
               },
-            ),*/
+            ),*//*
+
             const Divider(
               height: 1.0,
               thickness: 1,
@@ -268,13 +271,15 @@ class AppointmentEditorState extends State<AppointmentEditor> {
                 //managerCalendarController.nameCollection![managerCalendarController.selectedResourceIndex],
               ),
               onTap: () {
-                /*showDialog<Widget>(
+                */
+/*showDialog<Widget>(
                   context: context,
                   barrierDismissible: true,
                   builder: (BuildContext context) {
                     return _ResourcePicker();
                   },
-                ).then((dynamic value) => setState(() {}));*/
+                ).then((dynamic value) => setState(() {}));*//*
+
               },
             ),
             const Divider(
@@ -348,12 +353,14 @@ class AppointmentEditorState extends State<AppointmentEditor> {
                           startTime: managerCalendarController.startDate!,
                           endTime: managerCalendarController.endDate!,
                           color: managerCalendarController.colorCollection[managerCalendarController.selectedColorIndex],
-                          /*startTimeZone: _selectedTimeZoneIndex == 0
+                          */
+/*startTimeZone: _selectedTimeZoneIndex == 0
                               ? ''
                               : _timeZoneCollection![_selectedTimeZoneIndex],
                           endTimeZone: _selectedTimeZoneIndex == 0
                               ? ''
-                              : _timeZoneCollection![_selectedTimeZoneIndex],*/
+                              : _timeZoneCollection![_selectedTimeZoneIndex],*//*
+
                           notes: managerCalendarController.notes,
                           isAllDay: managerCalendarController.isAllDay!,
                           subject: managerCalendarController.subject == '' ? '(No title)' : managerCalendarController.subject,
@@ -398,4 +405,4 @@ class AppointmentEditorState extends State<AppointmentEditor> {
   String getTitle() {
     return managerCalendarController.subject.isEmpty ? 'New event' : 'Event details';
   }
-}
+}*/

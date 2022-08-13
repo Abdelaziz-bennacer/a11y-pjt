@@ -1,19 +1,23 @@
+import 'package:a11y_pjt/app/data/providers/user_provider.dart';
 import 'package:a11y_pjt/app/global/ui/utils/dialog_util.dart';
 import 'package:a11y_pjt/app/modules/login/views/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+import '../../../data/models/user_model/user_model.dart';
 import '../../../global/themes/themes.dart';
 import '../views/admin_users_view.dart';
 
-class AdminUsersController extends GetxController {
-  late List<Employee> employees;
+class AdminUsersController extends GetxController with StateMixin<List<UserModel>> {
+  late List<UserModel> employees;
   late EmployeeDataSource employeeDataSource;
+  //EmployeeDataSource employeeDataSource = EmployeeDataSource(employees)
   final formKey = GlobalKey<FormState>().obs;
   TextEditingController nameController = TextEditingController();
+  final userProvider = Get.put(UserProvider());
 
-  List<Employee> getEmployeeData() {
+  /*List<Employee> getEmployeeData() {
     return [
       Employee(10001, 'James', 'Doe', 'Project Lead', 'example@gmail.com', false),
       Employee(10002, 'Katryn', 'Lara', 'Manager', 'example@gmail.com', true),
@@ -22,13 +26,15 @@ class AdminUsersController extends GetxController {
       Employee(10005, 'Luis', 'Sanchez', 'example@gmail.com', 'Tech.Writer', true),
       Employee(10006, 'Allan', 'Theo', 'example@gmail.com', 'Developer', false),
     ];
-  }
+  }*/
 
   @override
-  void onInit() {
+  void onInit() async{
     super.onInit();
-    employees = getEmployeeData();
-    employeeDataSource = EmployeeDataSource(employees);
+    generateUsersList();
+    //employees = await fetchUsers();
+    //employeeDataSource = EmployeeDataSource(employees);
+    //fetchUsers();
   }
 
   @override
@@ -40,6 +46,132 @@ class AdminUsersController extends GetxController {
   void onClose() {
     nameController.dispose();
     super.onClose();
+  }
+
+  /*fetchUsers() async{
+    employees = await userProvider.getUsersList();
+    employeeDataSource = EmployeeDataSource(employees);
+  }*/
+
+  Future<List<UserModel>> generateUsersList() {
+    var response = userProvider.getUsersList();
+    return response;
+  }
+  Future<UserDataGridSource> getUsersDataSource() async {
+    var usersList = await generateUsersList();
+    return UserDataGridSource(usersList);
+  }
+
+  List<GridColumn> getColumns() {
+    return <GridColumn>[
+      GridColumn(
+          columnName: 'ID',
+          //width: Get.width / 8,
+          label: Container(
+            padding: EdgeInsets.all(8),
+            alignment: Alignment.centerLeft,
+            child: const Text(
+              'ID',
+              overflow: TextOverflow.clip,
+              softWrap: true,
+            ),
+          ),
+      ),
+      GridColumn(
+        columnName: 'NOM',
+        //width: Get.width / 8,
+        label: Container(
+          padding: EdgeInsets.all(8),
+          alignment: Alignment.centerLeft,
+          child: const Text(
+            'NOM',
+            overflow: TextOverflow.clip,
+            softWrap: true,
+          ),
+        ),
+      ),
+      GridColumn(
+        columnName: 'PRENOM',
+        //width: Get.width / 8,
+        label: Container(
+          padding: EdgeInsets.all(8),
+          alignment: Alignment.centerLeft,
+          child: const Text(
+            'PRENOM',
+            overflow: TextOverflow.clip,
+            softWrap: true,
+          ),
+        ),
+      ),
+      GridColumn(
+        columnName: 'FONCTION',
+        //width: Get.width / 8,
+        label: Container(
+          padding: EdgeInsets.all(8),
+          alignment: Alignment.centerLeft,
+          child: const Text(
+            'FONCTION',
+            overflow: TextOverflow.clip,
+            softWrap: true,
+          ),
+        ),
+      ),
+      GridColumn(
+        columnName: 'EMAIL',
+        //width: Get.width / 8,
+        label: Container(
+          padding: EdgeInsets.all(8),
+          alignment: Alignment.centerLeft,
+          child: const Text(
+            'EMAIL',
+            overflow: TextOverflow.clip,
+            softWrap: true,
+          ),
+        ),
+      ),
+      GridColumn(
+        columnName: 'ADMIN',
+        //width: Get.width / 8,
+        label: Container(
+          padding: EdgeInsets.all(8),
+          alignment: Alignment.centerLeft,
+          child: const Text(
+            'ADMIN',
+            overflow: TextOverflow.clip,
+            softWrap: true,
+          ),
+        ),
+      ),
+      GridColumn(
+        columnName: 'PROFIL',
+        //width: Get.width / 8,
+        label: Container(
+          padding: EdgeInsets.all(8),
+          alignment: Alignment.centerLeft,
+          child: const Text(
+            'ADMIN',
+            overflow: TextOverflow.clip,
+            softWrap: true,
+          ),
+        ),
+      ),
+      GridColumn(
+        columnName: 'SUPPRIMER',
+        //width: Get.width / 8,
+        label: Container(
+          padding: EdgeInsets.all(8),
+          alignment: Alignment.centerLeft,
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              return ElevatedButton(
+                onPressed: () {},
+                child: Get.width > 1000 ? Text('Supprimer') : Icon(Icons.delete),
+              );
+            },
+          ),
+        ),
+      ),
+    ];
   }
 
   columnTableWidget(String columnName, String title) {
@@ -57,6 +189,7 @@ class AdminUsersController extends GetxController {
       ),
     );
   }
+
   addNewUser() {
     //DialogUtil.showRegisterDialog(nameController, formKey.value, 'description');
       Get.dialog(Dialog(

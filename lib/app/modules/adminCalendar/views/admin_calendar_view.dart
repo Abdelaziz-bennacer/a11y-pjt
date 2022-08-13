@@ -1,3 +1,4 @@
+import 'package:a11y_pjt/app/modules/base/controllers/dashboard_calendar_component_controller.dart';
 import 'package:a11y_pjt/app/routes/app_pages.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +22,7 @@ class ManagerCalendar extends StatefulWidget {
 class _ManagerCalendarState extends State<ManagerCalendar> {
   final managerCalendarController = Get.find<AdminCalendarController>();
   final CalendarController _controller = CalendarController();
+  final dashboardCalendarController = Get.find<DashBoardCalendarController>();
 
   DateTime? _datePicked = DateTime.now();
 
@@ -70,45 +72,45 @@ class _ManagerCalendarState extends State<ManagerCalendar> {
                           dataSource: ManagerCalendarDataSource(snapshot.data!,
                               managerCalendarController.employeesResourceList),
                           onTap: onCalendarTapped,
-                          backgroundColor: Colors.indigo.shade900,
+                          backgroundColor: Colors.grey.shade100,
                           timeZone: 'Romance Standard Time',
                           //showWeekNumber: true,
                           headerStyle: const CalendarHeaderStyle(
                             textAlign: TextAlign.start,
                             textStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 overflow: TextOverflow.visible),
                           ),
                           viewHeaderStyle: const ViewHeaderStyle(
                             dateTextStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontWeight: FontWeight.w500),
                             dayTextStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontWeight: FontWeight.w500),
                           ),
                           weekNumberStyle: const WeekNumberStyle(
                             backgroundColor: Colors.amber,
                             textStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 15,
                                 overflow: TextOverflow.visible),
                           ),
                           showNavigationArrow: true,
                           selectionDecoration: BoxDecoration(
                             color: Colors.transparent,
-                            border: Border.all(color: Colors.white, width: 2),
+                            border: Border.all(color: Colors.black, width: 2),
                             borderRadius:
                             const BorderRadius.all(Radius.circular(4)),
                             shape: BoxShape.rectangle,
                           ),
-                          cellBorderColor: Colors.amber,
+                          cellBorderColor: Colors.grey.shade500,
                           todayHighlightColor: Colors.amber,
                           view: CalendarView.timelineWorkWeek,
                           timeSlotViewSettings: const TimeSlotViewSettings(
                             startHour: 6,
                             endHour: 20,
-                            timeTextStyle: TextStyle(color: Colors.white),
+                            timeTextStyle: TextStyle(color: Colors.black),
                           ),
                           /*timeSlotViewSettings: const TimeSlotViewSettings(
                                   startHour: 7,
@@ -128,7 +130,7 @@ class _ManagerCalendarState extends State<ManagerCalendar> {
                       } else {
                         return Container(
                           child: const Center(
-                            child: Text('Problème'),
+                            child: CircularProgressIndicator(),
                           ),
                         );
                       }
@@ -146,25 +148,30 @@ class _ManagerCalendarState extends State<ManagerCalendar> {
   Widget resourceBuilder(BuildContext context,
       ResourceViewHeaderDetails details) {
     if (details.resource.image != null) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundImage: details.resource.image,
-            backgroundColor: details.resource.color,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Center(child: Text(
-              details.resource.displayName,
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white),
-            )),
-          ),
-        ],
+      return Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade500, width: 0.3),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            CircleAvatar(
+              radius: 30,
+              backgroundImage: details.resource.image,
+              backgroundColor: details.resource.color,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Center(child: Text(
+                details.resource.displayName,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.black),
+              )),
+            ),
+          ],
+        ),
       );
     }
     else {
@@ -402,7 +409,7 @@ class _ManagerCalendarState extends State<ManagerCalendar> {
                                                     .toString();*/
                                                 managerCalendarController
                                                     .color =
-                                                    getTaskCardColor(
+                                                    dashboardCalendarController.getTaskCardColor(
                                                         managerCalendarController
                                                             .subject!);
                                                 managerCalendarController

@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import '../../../../../data/models/usertask_model/usertask_model.dart';
+import '../usertask_model/usertask_model.dart';
 
 class UserCalendarDataSource extends CalendarDataSource {
   UserCalendarDataSource(List<UserTask> source) {

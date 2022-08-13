@@ -1,3 +1,4 @@
+import 'package:a11y_pjt/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,65 +13,73 @@ class TopBarContents extends GetResponsiveView<NavigationController> {
     Get.put(NavigationController());
 
     return controller.screenWidth > 1080 
-      ? Container(
-        //color: const Color(0xffF2F6FE),
-        width: double.infinity,
-        height: Get.height * 0.13,
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                'A11Y.Manager',
-                style: TextStyle(
-                  color: Color(0xfff44346),
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 3,
-                ),
-              ),
-        
-              Row(
-                children: [
-                  Obx(() => getTopBarMenuItem(0, 'DashBoard'),),
-              SizedBox(
-                width: Get.width / 25,
-              ),
-              Obx(() => getTopBarMenuItem(1, 'Planification')),
-              const SizedBox(
-                width: 20,
-                //width: Get.width / 25,
-              ),
-              Obx(() => getTopBarMenuItem(2, 'Statistiques')),
-              const SizedBox(
-                width: 20,
-                //width: Get.width / 25,
-              ),
-              Obx(() => getTopBarMenuItem(3, 'Messages')),
-              const SizedBox(
-                width: 20,
-                //width: Get.width / 25,
-              ),
-              Obx(() => getTopBarMenuItem(4, 'Liste')),
-              ],
-              ),
-              Container(
-                margin: const EdgeInsets.only(right: 10),
-                child: InkWell(
-                  onTap: () {},
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.logout_sharp),
-                      Text('Logout')
-                    ],
+      ? Material(
+      elevation: 5,
+        child: Container(
+          //color: const Color(0xffF2F6FE),
+          width: double.infinity,
+          height: Get.height * 0.13,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'A11Y.Manager',
+                  style: TextStyle(
+                    color: Color(0xfff44346),
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 3,
                   ),
                 ),
-              ),
-            ],
+
+                Row(
+                  children: [
+                    Obx(() => getTopBarMenuItem(0, 'DashBoard'),),
+                SizedBox(
+                  width: Get.width / 25,
+                ),
+                Obx(() => getTopBarMenuItem(1, 'Planification')),
+                const SizedBox(
+                  width: 20,
+                  //width: Get.width / 25,
+                ),
+                Obx(() => getTopBarMenuItem(2, 'Statistiques')),
+                const SizedBox(
+                  width: 20,
+                  //width: Get.width / 25,
+                ),
+                Obx(() => getTopBarMenuItem(3, 'Messages')),
+                const SizedBox(
+                  width: 20,
+                  //width: Get.width / 25,
+                ),
+                Obx(() => getTopBarMenuItem(4, 'Utile')),
+                const SizedBox(
+                  width: 20,
+                  //width: Get.width / 25,
+                ),
+                Obx(() => getTopBarMenuItem(5, 'Liste')),
+                ],
+                ),
+                Container(
+                  margin: const EdgeInsets.only(right: 10),
+                  child: InkWell(
+                    onTap: () => Get.offAllNamed(AppPages.LOGIN),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.logout_sharp),
+                        Text('Logout')
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ) : Container();
